@@ -50,7 +50,7 @@ module.exports = {
         email,
         id,
       ])
-    ).rows;
+    );
     console.log(bdResponse);
     return res.status(200).json({ user: bdResponse });
   },
@@ -59,7 +59,7 @@ module.exports = {
     const { id } = req.params;
     const bdResponse = (
       await pool.query("DELETE FROM users WHERE id = $1", [id])
-    ).rows;
-    return res.status(200).json({ user: bdResponse });
+    );
+    return res.status(200).json({ command: bdResponse.command, rows: bdResponse.rowCount  });
   },
 };
